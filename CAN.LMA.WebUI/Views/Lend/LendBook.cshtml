@@ -1,0 +1,23 @@
+@model LendViewModel
+<div class="row orderForm">
+    <form asp-controller="Lend" asp-action="LendBook" method="post" class="form-horizantal" role="form">
+        <h3 class="col-md-offset-2">Lend a book</h3>
+        @Html.HiddenFor(x => x.Book.BookId)
+        <div class="form-group">
+            <label asp-for="Book.Borrower" class="col-md-2 control-label"></label>
+            <div class="col-md-6">
+                @Html.DropDownListFor(x => x.Book.BookId, new SelectList(Model.Customers.Select(x => new
+                {
+                    Value = x.CustomerId,
+                    Text = x.Name
+                }), "Value", "Text", new {@class = "form-control border-input"}))
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="btn-group col-md-offset-2 col-md-6">
+                <input class="btn btn-info" type="submit" value="Return" asp-controller="List"/>
+                <input class="btn btn-success" type="submit" value="Lend"/>
+            </div>
+        </div>
+    </form>
+</div>
